@@ -3,10 +3,6 @@
 
 using namespace Napi;
 
-struct Http3Constructors
-{
-  Napi::FunctionReference ref;
-};
 
 void initLib(const Napi::CallbackInfo &info)
 {
@@ -26,9 +22,7 @@ void initLib(const Napi::CallbackInfo &info)
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
-    Http3Constructors *constr = new Http3Constructors();
     Napi::Function initna = Function::New<initLib>(env);
-    constr->ref = Napi::Persistent(initna);
     exports.Set("initLib", initna);
 
     // env.SetInstanceData<Http3Constructors>(constr);
