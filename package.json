@@ -1,0 +1,18 @@
+{
+  "name": "bugnodeaddonapi",
+  "version": "1.0.0",
+  "description": "Demonstrates a bug, maybe node-addon-api related",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cmake-js --CDnapi_build_version=6 -t ClangCL -G \"Visual Studio 17 2022\" "
+  },
+  "author": "Marten Richter",
+  "license": "ISC",
+  "dependencies": {
+    "cmake-js": "^7.3.0",
+    "node-addon-api": "^8.0.0"
+  }
+}
