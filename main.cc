@@ -3,20 +3,28 @@
 
 using namespace Napi;
 
+napi_status NAPI_CDECL test(napi_env env,
+                                          double value,
+                                          napi_value* result) {
+    printf("test %lg\n", value);
 
-void initLib(const Napi::CallbackInfo &info)
+}
+
+Napi::Value initLib(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
   double timedelay = 200000;
+  napi_value dummy;
+  test(env,timedelay,&dummy);
   auto val = Napi::Value::From(env, timedelay);
   printf("val %lg %lg\n", val.ToNumber().DoubleValue(), timedelay);
   if (val.ToNumber().DoubleValue() != timedelay) {
     Napi::Error::New(env, "Val does not match! " +
                               std::to_string(val.ToNumber().DoubleValue()))
         .ThrowAsJavaScriptException();
-    return;
+    return Napi::Value();
   }
-  return;
+  return Napi::Boolean::New(env, true);
 }
 
 
